@@ -1,9 +1,4 @@
-package com.markets.marketlist.marketList.dummy;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.markets.markets.marketList.recyclerViewContent;
 
 public class MarketItem {
 

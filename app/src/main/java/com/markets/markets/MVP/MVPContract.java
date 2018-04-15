@@ -1,6 +1,6 @@
-package com.markets.marketlist.MVP;
+package com.markets.markets.MVP;
 
-import com.markets.marketlist.marketList.dummy.MarketItem;
+import com.markets.markets.marketList.recyclerViewContent.MarketItem;
 
 import java.util.List;
 
@@ -11,13 +11,11 @@ import java.util.List;
 public class MVPContract {
 
     public interface View {
-
         void showMessage(String message);
-        void setItemsToAdapter(List<MarketItem> v);
+        void setItemsToAdapter(List<MarketItem> items);
     }
 
     public interface Presenter {
-
         void attach(MVPContract.View view);
         void detach();
         void getData(int id);

@@ -1,27 +1,24 @@
-package com.markets.marketlist.marketList;
+package com.markets.markets.marketList;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
-import com.markets.marketlist.R;
-import com.markets.marketlist.marketList.dummy.MarketItem;
-import com.markets.marketlist.network.model.Market;
+import com.markets.markets.R;
+import com.markets.markets.marketList.recyclerViewContent.MarketItem;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+public class MarketItemRecyclerViewAdapter extends RecyclerView.Adapter<MarketItemRecyclerViewAdapter.ViewHolder> {
 
     private List<MarketItem> mValues;
 
-    public MyItemRecyclerViewAdapter(List<MarketItem> items) {
+    MarketItemRecyclerViewAdapter(List<MarketItem> items) {
         mValues = items;
     }
 
@@ -44,25 +41,24 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         return mValues.size();
     }
 
-    public void setItems(List<MarketItem> items){
+    void setItems(List<MarketItem> items) {
         mValues = items;
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.instrument_name)
-        public TextView mInstrumentName;
+        TextView mInstrumentName;
         @BindView(R.id.display_offer)
-        public TextView mDisplayOffer;
+        TextView mDisplayOffer;
 
-        public MarketItem mItem;
+        MarketItem mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
-
 
     }
 }

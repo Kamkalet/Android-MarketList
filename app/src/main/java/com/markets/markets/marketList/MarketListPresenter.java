@@ -1,13 +1,13 @@
-package com.markets.marketlist.marketList;
+package com.markets.markets.marketList;
 
 import android.util.Log;
 
-import com.markets.marketlist.MVP.MVPContract;
-import com.markets.marketlist.marketList.dummy.MarketItem;
-import com.markets.marketlist.network.RestService;
-import com.markets.marketlist.network.RetrofitProvider;
-import com.markets.marketlist.network.model.Market;
-import com.markets.marketlist.network.model.MarketListResponse;
+import com.markets.markets.MVP.MVPContract;
+import com.markets.markets.marketList.recyclerViewContent.MarketItem;
+import com.markets.markets.network.RestService;
+import com.markets.markets.network.RetrofitProvider;
+import com.markets.markets.network.model.Market;
+import com.markets.markets.network.model.MarketListResponse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,15 +30,14 @@ public class MarketListPresenter implements MVPContract.Presenter {
     private final RestService restService =
             RetrofitProvider.getRetrofit().create(RestService.class);
 
-
     @Override
     public void attach(MVPContract.View view) {
         this.view = view;
     }
 
     @Override
-    public void getData(int id) {
-        Country country = Country.get(id);
+    public void getData(int spinnerPosition) {
+        Country country = Country.get(spinnerPosition);
         restService.getMarkets(country.getLocale(), country.getCountryCode())
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
@@ -47,10 +46,11 @@ public class MarketListPresenter implements MVPContract.Presenter {
                 .map(this::convertToRecyclerItems)
                 .map(this::sort)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(items -> view.setItemsToAdapter(items), err -> {
-                    Log.e(TAG, err.toString());
-                    view.showMessage(err.getMessage());
-                });
+                .subscribe(items -> view.setItemsToAdapter(items),
+                        err -> {
+                            Log.e(TAG, err.toString());
+                            view.showMessage(err.getMessage());
+                        });
 
     }
 

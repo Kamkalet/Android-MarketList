@@ -1,4 +1,4 @@
-package com.markets.marketlist.marketList;
+package com.markets.markets.marketList;
 
 /**
  * Created by kamkalet on 15.04.2018.

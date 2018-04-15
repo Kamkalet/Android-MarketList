@@ -1,9 +1,8 @@
-package com.markets.marketlist.network;
+package com.markets.markets.network;
 
-import com.markets.marketlist.network.model.MarketListResponse;
+import com.markets.markets.network.model.MarketListResponse;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

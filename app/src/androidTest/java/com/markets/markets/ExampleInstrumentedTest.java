@@ -1,4 +1,4 @@
-package com.markets.marketlist;
+package com.markets.markets;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

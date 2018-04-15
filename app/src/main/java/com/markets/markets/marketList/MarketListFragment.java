@@ -1,8 +1,7 @@
-package com.markets.marketlist.marketList;
+package com.markets.markets.marketList;
 
-import android.content.Context;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.markets.marketlist.MVP.MVPContract;
-import com.markets.marketlist.R;
-import com.markets.marketlist.marketList.dummy.MarketItem;
+import com.markets.markets.MVP.MVPContract;
+import com.markets.markets.R;
+import com.markets.markets.marketList.recyclerViewContent.MarketItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,9 +62,9 @@ public class MarketListFragment extends Fragment
 
     private void initializeSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(),
-                R.array.countries, android.R.layout.simple_spinner_dropdown_item);
-
+                R.array.countries, R.layout.spinner_country_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -76,9 +75,10 @@ public class MarketListFragment extends Fragment
             public void onNothingSelected(AdapterView<?> parentView) {
                 //pass
             }
-
         });
+
         countrySpinner.setAdapter(adapter);
+        countrySpinner.getBackground().setColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_ATOP);
     }
 
     private void initializeRecyclerView() {
@@ -87,7 +87,7 @@ public class MarketListFragment extends Fragment
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(new ArrayList<>()));
+        recyclerView.setAdapter(new MarketItemRecyclerViewAdapter(new ArrayList<>()));
     }
 
     @Override
@@ -96,13 +96,8 @@ public class MarketListFragment extends Fragment
     }
 
     @Override
-    public void showError(Throwable throwable) {
-
-    }
-
-    @Override
     public void setItemsToAdapter(List<MarketItem> items) {
-        ((MyItemRecyclerViewAdapter)recyclerView.getAdapter()).setItems((items));
+        ((MarketItemRecyclerViewAdapter) recyclerView.getAdapter()).setItems((items));
     }
 
     @Override
@@ -116,6 +111,5 @@ public class MarketListFragment extends Fragment
         super.onDestroy();
         presenter.detach();
     }
-
 
 }

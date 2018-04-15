@@ -1,7 +1,9 @@
-package com.markets.marketlist;
+package com.markets.markets;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.markets.markets.R;
 
 public class MainActivity extends AppCompatActivity {
 
