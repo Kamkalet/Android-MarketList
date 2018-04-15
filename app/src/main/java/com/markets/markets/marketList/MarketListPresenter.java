@@ -30,6 +30,8 @@ public class MarketListPresenter implements MVPContract.Presenter {
     private final RestService restService =
             RetrofitProvider.getRetrofit().create(RestService.class);
 
+    private Country currentCountry = Country.UK;
+
     @Override
     public void attach(MVPContract.View view) {
         this.view = view;
@@ -46,10 +48,14 @@ public class MarketListPresenter implements MVPContract.Presenter {
                 .map(this::convertToRecyclerItems)
                 .map(this::sort)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(items -> view.setItemsToAdapter(items),
+                .subscribe(items -> {
+                            view.setItemsToAdapter(items);
+                            currentCountry = country;
+                        },
                         err -> {
                             Log.e(TAG, err.toString());
                             view.showMessage(err.getMessage());
+                            view.setCountry(currentCountry.getId());
                         });
 
     }

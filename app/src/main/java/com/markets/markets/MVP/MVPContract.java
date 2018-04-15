@@ -13,6 +13,7 @@ public class MVPContract {
     public interface View {
         void showMessage(String message);
         void setItemsToAdapter(List<MarketItem> items);
+        void setCountry(int spinnerPosition);
     }
 
     public interface Presenter {

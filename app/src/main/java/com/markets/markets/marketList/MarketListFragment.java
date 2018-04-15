@@ -101,6 +101,11 @@ public class MarketListFragment extends Fragment
     }
 
     @Override
+    public void setCountry(int spinnerPosition) {
+        countrySpinner.setSelection(spinnerPosition);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
