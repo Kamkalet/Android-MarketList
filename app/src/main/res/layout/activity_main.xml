@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.markets.markets.MainActivity">
+    tools:context="com.markets.MainActivity">
 
-    <fragment android:name="com.markets.markets.marketList.MarketListFragment"
+    <fragment
         android:id="@+id/list"
-        android:layout_weight="1"
+        android:name="com.markets.marketList.MarketListFragment"
         android:layout_width="0dp"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
 </android.support.constraint.ConstraintLayout>

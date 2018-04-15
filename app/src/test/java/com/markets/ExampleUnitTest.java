@@ -1,4 +1,4 @@
-package com.markets.markets;
+package com.markets;
 
 import org.junit.Test;
 

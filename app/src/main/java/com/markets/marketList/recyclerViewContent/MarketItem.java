@@ -1,4 +1,4 @@
-package com.markets.markets.marketList.recyclerViewContent;
+package com.markets.marketList.recyclerViewContent;
 
 public class MarketItem {
 

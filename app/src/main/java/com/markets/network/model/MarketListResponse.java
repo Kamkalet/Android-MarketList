@@ -1,4 +1,4 @@
-package com.markets.markets.network.model;
+package com.markets.network.model;
 
 import java.util.List;
 

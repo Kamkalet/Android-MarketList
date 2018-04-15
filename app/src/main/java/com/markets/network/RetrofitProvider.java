@@ -1,4 +1,4 @@
-package com.markets.markets.network;
+package com.markets.network;
 
 import android.support.annotation.NonNull;
 

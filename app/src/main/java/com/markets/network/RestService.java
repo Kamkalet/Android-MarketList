@@ -1,6 +1,6 @@
-package com.markets.markets.network;
+package com.markets.network;
 
-import com.markets.markets.network.model.MarketListResponse;
+import com.markets.network.model.MarketListResponse;
 
 import io.reactivex.Observable;
 import retrofit2.Response;

@@ -1,4 +1,4 @@
-package com.markets.markets.network.model;
+package com.markets.network.model;
 
 /**
  * Created by kamkalet on 14.04.2018.

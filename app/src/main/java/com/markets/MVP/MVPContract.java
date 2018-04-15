@@ -1,6 +1,6 @@
-package com.markets.markets.MVP;
+package com.markets.MVP;
 
-import com.markets.markets.marketList.recyclerViewContent.MarketItem;
+import com.markets.marketList.recyclerViewContent.MarketItem;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class MVPContract {
 
     public interface View {
-        void showMessage(String message);
+        void showNetworkErrorMessage();
         void setItemsToAdapter(List<MarketItem> items);
         void setCountry(int spinnerPosition);
     }

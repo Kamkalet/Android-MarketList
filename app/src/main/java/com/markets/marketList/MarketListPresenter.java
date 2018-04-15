@@ -1,13 +1,13 @@
-package com.markets.markets.marketList;
+package com.markets.marketList;
 
 import android.util.Log;
 
-import com.markets.markets.MVP.MVPContract;
-import com.markets.markets.marketList.recyclerViewContent.MarketItem;
-import com.markets.markets.network.RestService;
-import com.markets.markets.network.RetrofitProvider;
-import com.markets.markets.network.model.Market;
-import com.markets.markets.network.model.MarketListResponse;
+import com.markets.MVP.MVPContract;
+import com.markets.marketList.recyclerViewContent.MarketItem;
+import com.markets.network.RestService;
+import com.markets.network.RetrofitProvider;
+import com.markets.network.model.Market;
+import com.markets.network.model.MarketListResponse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,7 +54,7 @@ public class MarketListPresenter implements MVPContract.Presenter {
                         },
                         err -> {
                             Log.e(TAG, err.toString());
-                            view.showMessage(err.getMessage());
+                            view.showNetworkErrorMessage();
                             view.setCountry(currentCountry.getId());
                         });
 

@@ -1,4 +1,4 @@
-package com.markets.markets.marketList;
+package com.markets.marketList;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.markets.markets.MVP.MVPContract;
-import com.markets.markets.R;
-import com.markets.markets.marketList.recyclerViewContent.MarketItem;
+import com.markets.MVP.MVPContract;
+import com.markets.R;
+import com.markets.marketList.recyclerViewContent.MarketItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class MarketListFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View inflate = inflater.inflate(R.layout.fragment_item_list, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_market_list, container, false);
         unbinder = ButterKnife.bind(this, inflate);
         initializeSpinner();
         initializeRecyclerView();
@@ -78,7 +78,8 @@ public class MarketListFragment extends Fragment
         });
 
         countrySpinner.setAdapter(adapter);
-        countrySpinner.getBackground().setColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_ATOP);
+        countrySpinner.getBackground().setColorFilter(getResources().getColor(R.color.colorWhite)
+                , PorterDuff.Mode.SRC_ATOP);
     }
 
     private void initializeRecyclerView() {
@@ -87,12 +88,13 @@ public class MarketListFragment extends Fragment
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(new MarketItemRecyclerViewAdapter(new ArrayList<>()));
+        recyclerView.setAdapter(new MarketItemRecyclerViewAdapter());
     }
 
     @Override
-    public void showMessage(String message) {
-        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
+    public void showNetworkErrorMessage() {
+        Toast.makeText(this.getContext(),
+                this.getContext().getResources().getString(R.string.check_your_net), Toast.LENGTH_LONG).show();
     }
 
     @Override
