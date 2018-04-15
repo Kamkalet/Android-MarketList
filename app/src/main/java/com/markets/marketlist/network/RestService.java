@@ -2,6 +2,7 @@ package com.markets.marketlist.network;
 
 import com.markets.marketlist.network.model.MarketListResponse;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -16,7 +17,7 @@ public interface RestService {
     String ENDPOINT = "https://api.ig.com/";
 
     @GET("deal/samples/markets/ANDROID_PHONE/{locale}/{country_code}")
-    Single<Response<MarketListResponse>> getMarkets(@Path("locale") String locale,
-                                                    @Path("country_code") String countyCode);
+    Observable<Response<MarketListResponse>> getMarkets(@Path("locale") String locale,
+                                                        @Path("country_code") String countyCode);
 
 }
