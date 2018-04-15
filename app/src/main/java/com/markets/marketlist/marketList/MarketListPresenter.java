@@ -1,9 +1,9 @@
 package com.markets.marketlist.marketList;
 
 import android.util.Log;
-import android.view.MenuItem;
 
 import com.markets.marketlist.MVP.MVPContract;
+import com.markets.marketlist.marketList.dummy.Country;
 import com.markets.marketlist.marketList.dummy.MarketItem;
 import com.markets.marketlist.network.RestService;
 import com.markets.marketlist.network.RetrofitProvider;
@@ -12,13 +12,11 @@ import com.markets.marketlist.network.model.MarketListResponse;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
-import rx.functions.Func2;
 
 /**
  * Created by kamkalet on 14.04.2018.
@@ -40,8 +38,9 @@ public class MarketListPresenter implements MVPContract.Presenter {
     }
 
     @Override
-    public void getData() {
-        restService.getMarkets("en_GB", "igi")
+    public void getData(int id) {
+        Country country = Country.get(id);
+        restService.getMarkets(country.getLocale(), country.getCountryCode())
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
                 .map(Response::body)

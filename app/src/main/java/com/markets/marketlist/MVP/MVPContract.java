@@ -25,7 +25,7 @@ public class MVPContract {
 
         public void detach();
 
-        void getData();
+        void getData(int id);
     }
 
 }

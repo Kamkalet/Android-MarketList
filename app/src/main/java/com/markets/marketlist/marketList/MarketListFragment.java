@@ -4,11 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import com.markets.marketlist.MVP.MVPContract;
 import com.markets.marketlist.R;
@@ -28,6 +31,10 @@ public class MarketListFragment extends Fragment
 
     @BindView(R.id.market_list)
     RecyclerView recyclerView;
+
+    @BindView(R.id.country_spinner)
+    Spinner countrySpinner;
+
     private Unbinder unbinder;
 
     public MarketListFragment() {
@@ -36,10 +43,8 @@ public class MarketListFragment extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         presenter = new MarketListPresenter();
         presenter.attach(this);
-
 
     }
 
@@ -48,13 +53,24 @@ public class MarketListFragment extends Fragment
                              Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_item_list, container, false);
         unbinder = ButterKnife.bind(this, inflate);
+        countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                presenter.getData(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+
+        });
         return inflate;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.getData();
+        presenter.getData(countrySpinner.getId());
     }
 
 
@@ -70,8 +86,11 @@ public class MarketListFragment extends Fragment
 
     @Override
     public void setAdapter(List<MarketItem> v) {
-        Context context = this.getContext();
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                linearLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setAdapter(new MyItemRecyclerViewAdapter(v));
     }
 
@@ -86,4 +105,6 @@ public class MarketListFragment extends Fragment
         super.onDestroy();
         presenter.detach();
     }
+
+
 }
