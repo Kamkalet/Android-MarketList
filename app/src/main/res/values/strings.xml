@@ -3,7 +3,7 @@
     <string name="select_country">Select country</string>
     <string-array name="countries">
         <item>Germany</item>
-        <item>England</item>
-        <item>Poland</item>
+        <item>UK</item>
+        <item>France</item>
     </string-array>
 </resources>
