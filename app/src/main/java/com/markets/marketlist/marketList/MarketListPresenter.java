@@ -41,6 +41,10 @@ public class MarketListPresenter implements MVPContract.Presenter {
     public void getData(int id) {
         Country country = Country.get(id);
         restService.getMarkets(country.getLocale(), country.getCountryCode())
+                .doOnError(error -> {
+                    Log.e(TAG, error.toString());
+                    view.showMessage(error.getMessage());
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
                 .map(Response::body)
@@ -51,7 +55,8 @@ public class MarketListPresenter implements MVPContract.Presenter {
                 .subscribe(v -> {
                     view.setAdapter(v);
                 }, err -> {
-                    Log.d(TAG, err.toString());
+                    Log.e(TAG, err.toString());
+                    view.showMessage(err.getMessage());
                 });
 
     }

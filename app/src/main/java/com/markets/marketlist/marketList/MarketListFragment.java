@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.markets.marketlist.MVP.MVPContract;
 import com.markets.marketlist.R;
@@ -53,6 +55,15 @@ public class MarketListFragment extends Fragment
                              Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_item_list, container, false);
         unbinder = ButterKnife.bind(this, inflate);
+        initializeSpinner();
+        return inflate;
+    }
+
+    private void initializeSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.countries, android.R.layout.simple_spinner_dropdown_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -61,10 +72,11 @@ public class MarketListFragment extends Fragment
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
+                //pass
             }
 
         });
-        return inflate;
+        countrySpinner.setAdapter(adapter);
     }
 
     @Override
@@ -76,7 +88,7 @@ public class MarketListFragment extends Fragment
 
     @Override
     public void showMessage(String message) {
-
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
