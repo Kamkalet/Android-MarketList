@@ -12,19 +12,14 @@ public class MVPContract {
 
     public interface View {
 
-        public void showMessage(String message);
-
-        public void showError(Throwable throwable);
-
-        void setAdapter(List<MarketItem> v);
+        void showMessage(String message);
+        void setItemsToAdapter(List<MarketItem> v);
     }
 
     public interface Presenter {
 
-        public void attach(MVPContract.View view);
-
-        public void detach();
-
+        void attach(MVPContract.View view);
+        void detach();
         void getData(int id);
     }
 

@@ -3,7 +3,6 @@ package com.markets.marketlist.marketList;
 import android.util.Log;
 
 import com.markets.marketlist.MVP.MVPContract;
-import com.markets.marketlist.marketList.dummy.Country;
 import com.markets.marketlist.marketList.dummy.MarketItem;
 import com.markets.marketlist.network.RestService;
 import com.markets.marketlist.network.RetrofitProvider;
@@ -41,10 +40,6 @@ public class MarketListPresenter implements MVPContract.Presenter {
     public void getData(int id) {
         Country country = Country.get(id);
         restService.getMarkets(country.getLocale(), country.getCountryCode())
-                .doOnError(error -> {
-                    Log.e(TAG, error.toString());
-                    view.showMessage(error.getMessage());
-                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
                 .map(Response::body)
@@ -52,9 +47,7 @@ public class MarketListPresenter implements MVPContract.Presenter {
                 .map(this::convertToRecyclerItems)
                 .map(this::sort)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(v -> {
-                    view.setAdapter(v);
-                }, err -> {
+                .subscribe(items -> view.setItemsToAdapter(items), err -> {
                     Log.e(TAG, err.toString());
                     view.showMessage(err.getMessage());
                 });

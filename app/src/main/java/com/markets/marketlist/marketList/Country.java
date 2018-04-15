@@ -1,9 +1,4 @@
-package com.markets.marketlist.marketList.dummy;
-
-import android.support.annotation.Nullable;
-
-import java.util.Arrays;
-import java.util.Map;
+package com.markets.marketlist.marketList;
 
 /**
  * Created by kamkalet on 15.04.2018.

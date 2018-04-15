@@ -19,6 +19,7 @@ import com.markets.marketlist.MVP.MVPContract;
 import com.markets.marketlist.R;
 import com.markets.marketlist.marketList.dummy.MarketItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,7 +48,6 @@ public class MarketListFragment extends Fragment
         super.onCreate(savedInstanceState);
         presenter = new MarketListPresenter();
         presenter.attach(this);
-
     }
 
     @Override
@@ -56,6 +56,8 @@ public class MarketListFragment extends Fragment
         View inflate = inflater.inflate(R.layout.fragment_item_list, container, false);
         unbinder = ButterKnife.bind(this, inflate);
         initializeSpinner();
+        initializeRecyclerView();
+        presenter.getData(countrySpinner.getId());
         return inflate;
     }
 
@@ -79,12 +81,14 @@ public class MarketListFragment extends Fragment
         countrySpinner.setAdapter(adapter);
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        presenter.getData(countrySpinner.getId());
+    private void initializeRecyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                linearLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(new ArrayList<>()));
     }
-
 
     @Override
     public void showMessage(String message) {
@@ -97,13 +101,8 @@ public class MarketListFragment extends Fragment
     }
 
     @Override
-    public void setAdapter(List<MarketItem> v) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                linearLayoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(v));
+    public void setItemsToAdapter(List<MarketItem> items) {
+        ((MyItemRecyclerViewAdapter)recyclerView.getAdapter()).setItems((items));
     }
 
     @Override
