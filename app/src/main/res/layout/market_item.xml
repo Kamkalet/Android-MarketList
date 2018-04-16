@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
@@ -8,6 +8,7 @@
         android:id="@+id/instrument_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
 
@@ -16,11 +17,29 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
-    <TextView
-        android:id="@+id/display_offer"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/display_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="@dimen/medium_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textSize="@dimen/small_text"
+            android:textColor="@color/grey"
+            android:text="@string/display_offer"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
