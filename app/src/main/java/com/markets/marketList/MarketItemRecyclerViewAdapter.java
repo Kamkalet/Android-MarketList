@@ -53,7 +53,7 @@ public class MarketItemRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
     @Override
     public int getItemViewType(int position) {
-        if (marketItems.size()==0) return R.layout.no_content_view;
+        if (marketItems.size() == 0) return R.layout.no_content_view;
         else return R.layout.market_item;
     }
 

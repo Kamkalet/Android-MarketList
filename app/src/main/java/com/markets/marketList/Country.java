@@ -6,7 +6,7 @@ package com.markets.marketList;
 
 public enum Country {
 
-    UK(0, "en_GB", "igi"),  GERMANY(1, "de_DE", "dem"), FRANCE(2, "fr_FR", "frm");
+    UK(0, "en_GB", "igi"), GERMANY(1, "de_DE", "dem"), FRANCE(2, "fr_FR", "frm");
 
     private int id;
     private String locale;
@@ -19,10 +19,13 @@ public enum Country {
     }
 
     public static Country get(int id) {
-        switch(id) {
-            case  0: return UK;
-            case  1: return GERMANY;
-            case  2: return FRANCE;
+        switch (id) {
+            case 0:
+                return UK;
+            case 1:
+                return GERMANY;
+            case 2:
+                return FRANCE;
         }
         return UK;
     }

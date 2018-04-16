@@ -12,13 +12,17 @@ public class MVPContract {
 
     public interface View {
         void showNetworkErrorMessage();
+
         void setItemsToAdapter(List<MarketItem> items);
+
         void setCountry(int spinnerPosition);
     }
 
     public interface Presenter {
         void attach(MVPContract.View view);
+
         void detach();
+
         void getData(int spinnerPosition);
     }
 

@@ -18,7 +18,6 @@ import com.markets.MVP.MVPContract;
 import com.markets.R;
 import com.markets.marketList.recyclerViewContent.MarketItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
