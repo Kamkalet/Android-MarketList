@@ -27,9 +27,4 @@ public class RetrofitProvider {
         return retrofit;
     }
 
-    public static Retrofit rebuild() {
-        retrofit = buildRetrofit();
-        return retrofit;
-    }
-
 }

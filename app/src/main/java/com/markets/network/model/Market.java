@@ -37,7 +37,19 @@ public class Market {
 
     @Override
     public String toString() {
-        return "Market [displayOffer = " + displayOffer + ", epic = " + epic + ", scaled = " + scaled + ", updateTime = " + updateTime + ", netChange = " + netChange + ", instrumentName = " + instrumentName + ", timezoneOffset = " + timezoneOffset + ", displayBid = " + displayBid + ", displayPeriod = " + displayPeriod + ", instrumentVersion = " + instrumentVersion + ", exchangeId = " + exchangeId + "]";
+        return "Market{" +
+                "displayOffer='" + displayOffer + '\'' +
+                ", epic='" + epic + '\'' +
+                ", scaled='" + scaled + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", netChange='" + netChange + '\'' +
+                ", instrumentName='" + instrumentName + '\'' +
+                ", timezoneOffset='" + timezoneOffset + '\'' +
+                ", displayBid='" + displayBid + '\'' +
+                ", displayPeriod='" + displayPeriod + '\'' +
+                ", instrumentVersion='" + instrumentVersion + '\'' +
+                ", exchangeId='" + exchangeId + '\'' +
+                '}';
     }
 }
 

@@ -19,7 +19,7 @@ public class MVPContract {
     public interface Presenter {
         void attach(MVPContract.View view);
         void detach();
-        void getData(int id);
+        void getData(int spinnerPosition);
     }
 
 }
